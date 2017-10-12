@@ -16,6 +16,7 @@ describe('<Header />', () => {
     it('Should render the info modal when toggled', () => {
         const wrapper = shallow(<Header />);
         wrapper.instance().toggleInfoModal(true);
+        wrapper.update();
         expect(wrapper.find('InfoModal').exists()).toEqual(true);
     });
 });
