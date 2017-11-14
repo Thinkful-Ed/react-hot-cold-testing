@@ -16,7 +16,7 @@ describe('<Game />', () => {
             feedback: 'Awesome',
             correctAnswer: -1 // Negative so different to new game
         });
-        wrapper.instance().newGame();
+        wrapper.instance().restartGame();
         expect(wrapper.state('guesses')).toEqual([]);
         expect(wrapper.state('feedback')).toEqual('Make your guess!');
         expect(wrapper.state('correctAnswer')).toBeGreaterThanOrEqual(0);
@@ -30,23 +30,23 @@ describe('<Game />', () => {
             correctAnswer: 100
         });
 
-        wrapper.instance().guess(25);
+        wrapper.instance().makeGuess(25);
         expect(wrapper.state('guesses')).toEqual([25]);
         expect(wrapper.state('feedback')).toEqual('You\'re Ice Cold...');
 
-        wrapper.instance().guess(60);
+        wrapper.instance().makeGuess(60);
         expect(wrapper.state('guesses')).toEqual([25, 60]);
         expect(wrapper.state('feedback')).toEqual('You\'re Cold...');
 
-        wrapper.instance().guess(80);
+        wrapper.instance().makeGuess(80);
         expect(wrapper.state('guesses')).toEqual([25, 60, 80]);
-        expect(wrapper.state('feedback')).toEqual('You\'re Warm');
+        expect(wrapper.state('feedback')).toEqual('You\'re Warm.');
 
-        wrapper.instance().guess(95);
+        wrapper.instance().makeGuess(95);
         expect(wrapper.state('guesses')).toEqual([25, 60, 80, 95]);
         expect(wrapper.state('feedback')).toEqual('You\'re Hot!');
 
-        wrapper.instance().guess(100);
+        wrapper.instance().makeGuess(100);
         expect(wrapper.state('guesses')).toEqual([25, 60, 80, 95, 100]);
         expect(wrapper.state('feedback')).toEqual('You got it!');
     });
